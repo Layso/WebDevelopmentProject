@@ -1,0 +1,59 @@
+#Deny from all
+
+# Send all responses in utf-8
+AddDefaultCharset utf-8
+# Allow directory browsing. USEFUL ONLY DURING DEVELOPMENT
+#Options +Indexes
+#RewriteBase /progest/pages/
+# Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
+RewriteEngine on
+# Base directory for rewritng: URL OF YOUR POROJECT
+#RewriteBase /progest/pages/
+# Rewriting rules (use regular expressions)
+
+#RewriteRule ^sql_skills$ sql_skills/pages
+
+RewriteRule ^register$ register_controller.php?action=register
+
+RewriteRule ^registration register_controller?action=registration
+
+RewriteRule ^login$ register_controller.php?action=login
+
+RewriteRule ^login-success$ register_controller.php?action=login&success=success
+
+RewriteRule ^disconnect login_controller.php?action=disconnect
+
+RewriteRule ^connect$ login_controller.php?action=login
+
+RewriteRule ^trainee-(\d+)+_evaluation-(\d+)$  trainee_Displaysheet_controller.php?trainee_id=$1&eval_id=$2
+
+#RewriteRule ^answer sheet_answer_controller.php
+
+RewriteRule ^trainee-(\d+)+_group$ group_controller.php?trainee_id=$1
+
+RewriteRule ^trainee-(\d+)+_join$ group_controller.php?trainee_id=$1&action=join
+
+RewriteRule ^trainee-(\d+)+_account$ evaluation_home_controller.php?trainee_id=$1
+
+RewriteRule ^trainee-(\d+)+_evaluation$ trainee_evaluation_controller.php?trainee_id=$1
+
+
+
+RewriteRule ^trainer-(\d+)+_group$ trainer_group_controller.php?trainer_id=$1
+
+RewriteRule ^trainer-(\d+)+_add$ trainer_group_controller.php?trainer_id=$1&action=add
+
+RewriteRule ^trainer-(\d+)+_consult$ trainer_group_controller.php?trainer_id=$1&action=consult
+
+RewriteRule ^trainer-(\d+)+_account$ trainer_account.php?trainer_id=$1
+
+RewriteRule ^trainer-(\d+)+_closeGroup$ trainer_group_controller.php?trainer_id=$1&action=closeGroups
+
+RewriteRule ^trainer-(\d+)+_reopenGroup$ trainer_group_controller.php?trainer_id=$1&action=reopenGroups
+
+RewriteRule ^trainer-(\d+)+_group-(\d+)+$ trainer_group_controller?trainer_id=$1&action=consult&group_id=$2
+
+RewriteRule ^trainer-(\d+)+_group-(\d+)+_validate$ trainer_group_controller?trainer_id=$1&action=validate&group_id=$2
+
+RewriteRule ^trainer-(\d+)+_group-(\d+)+_remove$ trainer_group_controller?trainer_id=$1&action=remove&group_id=$2
+#RewriteRule ^trainer-(\d+)+_evaluation$ trainer_evaluation.php?trainer_id=$1

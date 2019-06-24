@@ -1,0 +1,46 @@
+# Send all responses in utf-8
+AddDefaultCharset utf-8
+# Allow directory browsing. USEFUL ONLY DURING DEVELOPMENT
+#Options +Indexes
+# Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
+RewriteEngine on
+# Base directory for rewritng: URL OF YOUR POROJECT
+#RewriteBase /progest/pages/
+# Rewriting rules (use regular expressions)
+
+#RewriteRule ^sql_skills$ sql_skills/pages
+
+
+#RewriteEngine On
+
+
+#RewriteRule ^index.php$  "index.php"
+
+#RewriteRule ^index.php$  pages/index.php
+
+#RewriteRule ^index.php$ /page/index.php [L]
+
+
+#RewriteRule ^register$ pages/connection_controller.php?action=register
+
+#RewriteRule ^login$ pages/connection_controller.php?action=login
+
+#RewriteRule ^disconnect pages/login_controller.php?action=disconnect
+
+#RewriteRule ^logview$ pages/login_controller.php?action=connection
+
+#RewriteRule ^regisview$ pages/connection_controller.php?action=registration
+
+#RewriteRule ^trainee_sheet_controller.php$ pages/trainee_sheet_controller.php  
+
+#RewriteRule ^trainee-(\d+)+_evaluation-(\d+)+.php$  pages/trainee_Displaysheet_controller.php?trainee_id=$1&eval_id=$2
+
+#RewriteRule ^trainee-(\d+)+_group$ pages/group_controller.php?trainee_id=$1
+
+#RewriteRule ^trainee-(\d+)+_join$ pages/group_controller.php?trainee_id=$1&action=join
+
+#RewriteRule ^trainee-(\d+)+_account$ pages/evaluation_home_controller.php?trainee_id=$1
+
+#RewriteRule ^trainee-(\d+)+_evaluation$ pages/trainee_evaluation_controller.php?trainee_id=$1
+
+#RewriteRule ^toto/titi$ phpinfo.php
