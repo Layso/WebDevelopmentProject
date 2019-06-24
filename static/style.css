@@ -1,0 +1,374 @@
+@charset "UTF-8";
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9 avr. 2019, 10:43:02
+    Author     : Stéphane && Kumanan
+*/
+/*-----Header-----*/
+html {
+  font-size: 14px;
+  height: 100%;
+}
+body {
+  /*background-color: #e9e9e9;*/
+  /*background-color: white; */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 1px;
+
+  /*  font-family: "Open Sans", sans-serif;*/
+  /*line-height: 1.625;*/
+  margin: 0;
+  padding: 0;
+  color: #6F6F6F;
+  min-height: 100%;
+  position: relative;
+
+  /*font-family: "Open Sans", sans-serif;*/
+  /*line-height: 1.625;*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+  /*color: #6F6F6F;*/
+  /* min-height: 100%;
+   position: relative;*/
+}
+
+
+
+
+/*--------------------------------------------------LOGIN REGISTER----------------------------------------------------------------------------------------------------------------*/
+
+
+* {
+  box-sizing: border-box;
+  transition: .25s all ease;
+}
+
+.login-container {
+  display: block;
+  position: relative;
+  z-index: 0;
+  margin: 5rem auto 0;
+  padding: 5rem 4rem 0.1rem 4rem;
+  width: 100%;
+  /*max-width: 585px;
+  max-height: 870px;*/
+
+  max-width: 525px;
+  max-height: auto;
+  /*background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/283591/login-background.jpg);*/
+  /*background-color:white;*/
+  /*box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.85);*/
+  box-shadow: 0 20px 70px -30px rgba(0, 0, 0, 0.85);
+
+}
+
+.form-login {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 2rem;
+  /*border-bottom: 1px solid rgba(255, 255, 255, 0.25);*/
+}
+
+.login-nav {
+  position: relative;
+  padding: 0;
+  margin: 0 0 6em 1rem;
+  text-align: center;
+}
+
+.login-nav__item {
+  list-style: none;
+  display: inline-block;
+}
+/*
+.login-nav__item + .login-nav__item {
+        margin-left: 2.25rem;
+}
+*/
+
+.login-nav__item a {
+  position: relative;
+  color: #6F6F6F;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding-bottom: .5rem;
+  transition: .20s all ease;
+}
+
+.login-nav__item.active a,
+.login-nav__item a:hover{
+  color:  #6F6F6F;
+  transition: .15s all ease;
+}
+
+.login-nav__item a:after {
+  content: '';
+  display: inline-block;
+  height: 10px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  right: 100%;
+  bottom: -1px;
+  left: 0;
+  border-radius: 50%;
+  transition: .15s all ease;
+}
+
+.login-nav__item a:hover:after,
+.login-nav__item.active a:after{
+  background-color: #1E77A4;
+  height: 2px;
+  right: 0;
+  bottom: 2px;
+  border-radius: 0;
+  transition: .20s all ease;
+}
+.login__label {
+  display: block;
+  padding-left: 1rem;
+}
+
+.login__label,
+.login__label--checkbox {
+  color: #6F6F6F;
+  text-transform: uppercase;
+  font-size: .75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+
+}
+
+.login__label--checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+  margin-left: 1rem;
+  color: #ffffff;
+  font-size: .75rem;
+  text-transform: inherit;
+}
+
+.login__input {
+  color: #1E77A4;
+  font-size: 1.15rem;
+  width: 100%;
+  padding: .5rem 1rem;
+  border: 2px solid #1E77A4;
+  outline: none;
+  border-radius: 1.5rem;
+  background-color: transparent;
+  letter-spacing: 1px;
+}
+
+.login__input:hover,
+.login__input:focus{
+  /*color: #1E77A4;*/
+  border: 2px solid #1E77A4;
+  background-color: white;
+}
+
+.login__input + .login__label {
+  margin-top: 1.5rem;
+}
+
+.login__input--checkbox {
+  position: absolute;
+  top: .1rem;
+  left: 0;
+  margin: 0;
+}
+
+.login__submit {
+  color: #ffffff;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem; 
+  font-size: 1rem;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 3rem;
+  padding: 0.55rem;
+  border: 2px solid transparent;
+  border-radius: 2rem;
+  display: block;
+  width: 50%;
+  background-color: #1E77A4;
+  /*border: none;*/
+  cursor: pointer;
+
+}
+
+.login__submit:hover {
+
+  /*padding: 0.65rem;*/
+  background-color: transparent;
+  color: #1E77A4;
+  border: 2px solid #1E77A4;
+}
+
+
+.login__forgot {
+
+  /*margin: auto;*/
+  /*display: block;*/
+  /*margin-top: 0rem;*/
+  text-align: center;
+  color: #1E77A4;
+  font-size: .75rem;
+  /*	text-decoration: none;*/
+  position: relative;
+  z-index: 1;
+
+}
+
+.login__forgot:hover {
+
+  /*color: rgb(17, 97, 237);
+  border: 2px solid #1E77A4;border: 2px solid #1E77A4;*/
+}
+
+
+
+
+
+
+
+
+/*-----------------------------------------------------class errors -----------------------------------------------------------------------------------------------------------------*/
+
+.errors{
+
+
+  color: red;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin : 0;
+
+}
+
+
+
+
+/*----------------------------------------------------------Header_homepage-----------------------------------------------------------------------------------------------------------------------------*/
+.topbar {
+  padding: 18px 20px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  text-align: center;
+  background: white;
+}
+
+header {
+  border-bottom: 0.5px solid #cccccc;
+}
+
+.menu-item {
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+}
+.menu-item:hover {
+  color: #1E77A3;
+}
+
+.menu-btn * {
+  border: solid 1px;
+  border-radius: 30px;
+  padding: 5px 15px;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.menu-btn .btn-register, .menu-btn .btn-logout {
+  background: none;
+  color: #1E77A4;
+  border-color: #1E77A4;
+  transition-property: color;
+  transition: background 0.5s;
+}
+.menu-btn .btn-register:hover, .menu-btn .btn-logout:hover {
+  background: #1E77A4;
+  color: white;
+  border-color: #1E77A4;
+}
+.menu-btn .btn-login {
+  background: #1E77A4;
+  color: white;
+  border-color: #1E77A4;
+  transition-property: color;
+}
+.menu-btn .btn-login:hover {
+  background: none;
+  color: #1E77A4;
+  border-color: #1E77A4;
+  transition: background 0.5s;
+}
+.menu-btn .btn-logout {
+  color: #d81111;
+  border-color: #d81111;
+}
+.menu-btn .btn-logout:hover {
+  background: #d81111;
+  color: white;
+  border-color: #d81111;
+}
+
+
+/**---------------------------PARTIE NON EN SASS ( Sass remis pour plus tard)----------------------------------------------------*/
+/*------------------------TRAINEE SHEET--------------------------------------------*/
+.sheet {
+  display: inline;
+  height: 100px;
+}
+
+.sheet-card {
+  margin: 10px;
+}
+
+.sheet-card-answer textarea {
+  width: 350px;
+  height: 125px;
+  vertical-align: middle;
+}
+
+/*-----footer -----------------------------------------------------------------*/
+footer {
+  text-align: center;
+  height: 30px;
+  width: 100%;
+  background: #DDE6EF;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+}
+
+/*----------------------------------------------------------------------------*/
+@media only screen and (min-width: 600px) {
+  .topbar {
+    align-items: center;
+    display: flex;
+    max-width: 1150px;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+}
+
+/*# sourceMappingURL=style.css.map */

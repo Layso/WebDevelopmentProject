@@ -1,14 +1,14 @@
-<?php require_once 'header_homepage.php'; ?>
+<?php require_once 'header.php'; ?>
 
 <div class="errors">
-    <?php
+  <?php
   //  var_dump($errors);
-    if (isset($errors) && count($errors) > 0) {
-        foreach ($errors as $error) {
-            echo "<div>" . $error . "</div>";
-        }
+  if (isset($errors) && count($errors) > 0) {
+    foreach ($errors as $error) {
+      echo "<div>" . $error . "</div>";
     }
-    ?>
+  }
+  ?>
 
 </div>
 
