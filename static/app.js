@@ -213,9 +213,10 @@ $(document).ready(function () {
                     type: "PUT",
                     data: data,
                     success: function () {
-                        //document.location.reload(true);
+                        document.location.reload(true);
                     },
-                    error: function () {
+                    error: function (thrownError) {
+                        //console.log(thrownError);
                         alert(" The server endure the following error: there is a problem with a PUT request");
                     }
 
@@ -223,12 +224,70 @@ $(document).ready(function () {
         }else{
             window.alert("You need to select a trainee");
         }
-         
-        
     });
-    
-    
-    
 
 
+    $(".group-candidates form button[name='remove']").click(event, function (event) {
+        $trainees=$(this).siblings(".candidates-list").children("li").children("input");
+        tab= new Array();
+        self=$(this);
+        $trainees.each(function(){
+            if($(this).prop("checked")){
+                tab.push($(this).val());
+            }
+        });
+        
+        if(tab.length >0){
+            url="trainer-" + e + "_group-"+g+"_remove";
+            data={trainees:tab};
+            $.ajax({
+                    url: url,
+                    type: "PUT",
+                    data: data,
+                    success: function (data, textStatus, xhr) {
+                        document.location.reload(true);
+                    },
+                    error: function (thrownError) {
+                        //console.log(thrownError);
+                        alert(" The server endure the following error: there is a problem with a PUT request");
+                    }
+
+                });
+        }else{
+            window.alert("You need to select a trainee");
+        }
+    });
+
+
+
+    $(".group-members form button[name='remove']").click(event, function (event) {
+        $trainees=$(this).siblings(".validated-list").children("li").children("input");
+        tab= new Array();
+        self=$(this);
+        $trainees.each(function(){
+            if($(this).prop("checked")){
+                tab.push($(this).val());
+            }
+        });
+        
+        if(tab.length >0){
+            url="trainer-" + e + "_group-"+g+"_remove";
+            data={trainees:tab};
+            $.ajax({
+                    url: url,
+                    type: "PUT",
+                    data: data,
+                    success: function (data, textStatus, xhr) {
+                        document.location.reload(true);
+                    },
+                    error: function (thrownError) {
+                        //console.log(thrownError);
+                        alert(" The server endure the following error: there is a problem with a PUT request");
+                    }
+
+                });
+        }else{
+            window.alert("You need to select a trainee");
+        }
+    });
 });
