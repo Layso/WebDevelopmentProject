@@ -151,7 +151,7 @@ class TrainerGroupDao {
    */
   public static function getMembers($group_id) {
     $db = DB::getConnection();
-    $sql = "SELECT person.person_id as trainee_id,name,first_name,group_member.validated_at as member_validated_at FROM group_member JOIN person on group_member.person_id=person.person_id where group_id=:group_id and is_trainer=false";
+    $sql = "SELECT person.person_id as trainee_id,name,first_name,email,group_member.validated_at as member_validated_at FROM group_member JOIN person on group_member.person_id=person.person_id where group_id=:group_id and is_trainer=false";
     $stmt = $db->prepare($sql);
     $stmt->bindValue(":group_id", $group_id);
     $stmt->execute();
@@ -176,8 +176,9 @@ class TrainerGroupDao {
         else
           array_push($validated, $member);
       }
-      $filtred = array("candidates" => $candidates, "validated" => $validated);
     }
+
+    $filtred = array("candidates" => $candidates, "validated" => $validated);
     return $filtred;
   }
 
@@ -206,11 +207,11 @@ class TrainerGroupDao {
 
   /**
    * 
-   * @param int $trainee_id
+   * @param int $trainee_ids
    * @param int $group_id
    * @return int $ok return 1 foreach insert succefull
    */
-  public static function remove($trainee_id, $group_id) {
+  public static function remove($trainee_ids, $group_id) {
     $db = DB::getConnection();
     $sql = "delete from group_member where group_id=:group_id and person_id=:trainee_id";
     $stmt = $db->prepare($sql);
