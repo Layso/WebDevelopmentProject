@@ -33,4 +33,4 @@ RewriteRule ^trainer-(\d+)+_reopenGroup$ trainer_group_controller.php?trainer_id
 RewriteRule ^trainer-(\d+)+_group-(\d+)+$ trainer_group_controller.php?trainer_id=$1&action=consult&group_id=$2
 RewriteRule ^trainer-(\d+)+_group-(\d+)+_validate$ trainer_group_controller.php?trainer_id=$1&action=validate&group_id=$2
 RewriteRule ^trainer-(\d+)+_group-(\d+)+_remove$ trainer_group_controller.php?trainer_id=$1&action=remove&group_id=$2
-#RewriteRule ^trainer-(\d+)+_evaluation$ trainer_evaluation.php?trainer_id=$1
+RewriteRule ^trainer-(\d+)+_evaluation$ evaluation_home_controller.php?trainer_id=$1

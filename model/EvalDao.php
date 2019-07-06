@@ -79,4 +79,88 @@ class EvalDao {
     return $filtred;
   }
 
+  /**
+   * @param int $grpup_id group of the evaluation
+   * @param int $quiz_id quiz of the evaluation
+   * @param object $start_date evaluation start date
+   * @param object $end_date evaluation end date
+   */
+  public static function createNewEval($group_id, $quiz_id, $start_date, $end_date) {
+    $db = DB::getConnection();
+    $sql = "insert into evaluation(group_id,quiz_id,scheduled_at,ending_at) values(:group,:quiz,:start,:end)";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":group", $group_id);
+    $stmt->bindValue(":quiz", $quiz_id);
+    $stmt->bindValue(":start", $start_date);
+    $stmt->bindValue(":end", $end_date);
+    $ok = $stmt->execute();
+    $db = null;
+  }
+
+
+  /**
+   * @param array $groups groups of user to check planned evals of
+   * @return array array of planned evals for group list
+   */
+  public static function getPlannedEvals($groups) {
+    $result = (array)null;
+    
+    foreach ($groups as $group) {
+      $db = DB::getConnection();
+      $sql = "select * from evaluation WHERE group_id=:group_id";
+      $stmt = $db->prepare($sql);
+      $stmt->bindValue(":group_id", $group["group_id"]);
+      $stmt->execute();
+      $db = null;
+      $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      
+      foreach ($list as $eval) {
+        if (time() < strtotime($eval["ending_at"])) {
+          array_push($result, $eval);
+        }
+      }
+    }
+    
+    return $result;
+  }
+    
+    
+    /*
+    $db = DB::getConnection();
+    $sql = "select u.* from usergroup u WHERE creator_id =:trainer_id and closed_at is not null  ";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":trainer_id", $trainer_id);
+    $stmt->execute();
+    $db = null;
+    $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $list;
+    */
+  
+
+
+   /**
+   * @param array $groups groups of user to check finished evals of
+   * @return array array of finished evals for group list
+   */
+  public static function getFinishedEvals($groups) {
+    $result = (array)null;
+    
+    foreach ($groups as $group) {
+      $db = DB::getConnection();
+      $sql = "select * from evaluation WHERE group_id=:group_id";
+      $stmt = $db->prepare($sql);
+      $stmt->bindValue(":group_id", $group["group_id"]);
+      $stmt->execute();
+      $db = null;
+      $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      
+      foreach ($list as $eval) {
+        if (time() > strtotime($eval["ending_at"])) {
+          array_push($result, $eval);
+        }
+      }
+    }
+    
+    return $result;
+  }
 }
