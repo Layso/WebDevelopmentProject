@@ -227,4 +227,18 @@ class TrainerGroupDao {
     return $ok;
   }
 
+
+  /**
+   * @param string $group_name
+   * @return int id of the group
+   */
+  public static function getGroupIdByName($group_name) {
+    $db = DB::getConnection();
+        $sql = "select group_id from usergroup where name=:name";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(":name", $group_name);
+        $stmt->execute();
+        $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $list[0]["group_id"];
+  }
 }

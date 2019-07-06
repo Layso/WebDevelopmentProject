@@ -62,5 +62,4 @@ class UserGroupDao {
     $ok = $stmt->execute();
     return $ok;
   }
-
 }
