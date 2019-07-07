@@ -62,4 +62,18 @@ class UserGroupDao {
     $ok = $stmt->execute();
     return $ok;
   }
+
+  /**
+   * @param int $id id of group
+   * @return object group object corresponds to given id
+   */
+  public static function getGroupByID($id) {
+    $db = DB::getConnection();
+    $sql = "select * from  usergroup where group_id=:group_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":group_id", $id);
+    $stmt->execute();
+    $db = null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+  }
 }
