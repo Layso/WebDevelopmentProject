@@ -1,8 +1,11 @@
 # WebDevelopmentProject
 
 Final project for Advanced Web Development course
-Editing READ.md for testing prupose
-This is a sample test
 
 
-Sample for the test branch
+# Group Members
+* Deniz Can Erdem Yılmaz
+* Kannan Veerabhagu Santhanam
+* Raja Shekar Reddy Annachedu
+* Sai Krishna Kumar Bodanki
+* Vijaya Srikar Poralla
