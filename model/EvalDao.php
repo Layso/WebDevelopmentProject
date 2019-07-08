@@ -163,4 +163,33 @@ class EvalDao {
     
     return $result;
   }
+
+
+  /**
+   * @param int $id id of evaluation
+   * @return object evaluation corresponds to that id
+   */
+  public static function getEvalByID($id) {
+      $db = DB::getConnection();
+      $sql = "select * from evaluation WHERE evaluation_id=:evaluation_id";
+      $stmt = $db->prepare($sql);
+      $stmt->bindValue(":evaluation_id", $id);
+      $stmt->execute();
+      $db = null;
+      return $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
+  }
+
+  /**
+   * 
+   * @param int $id id of evaluation
+   * @return int status
+   */
+  public static function setEvalCompleted($id) {
+    $db = DB::getConnection();
+    $sql = "update evaluation set corrected_at=now() where evaluation_id=:evaluation_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":evaluation_id", $id);
+    $ok = $stmt->execute();
+    return $ok;
+  }
 }

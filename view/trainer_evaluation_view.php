@@ -87,7 +87,7 @@ function checkForm(){
 	  foreach ($getEval["finished"] as &$uneEval) {
 		?>
 		<div class="evaluation-card">
-		<p><?= "Evaluation " . $uneEval["evaluation_id"] . " Ended at: " . $uneEval["ending_at"] ?></p>
+		<p><a href=<?="trainer-" . $trainer["person_id"] . "_evaluation-" . $uneEval["evaluation_id"] ?>><?= "Evaluation " . $uneEval["evaluation_id"] . " Ended at: " . $uneEval["ending_at"] ?></a></p>
 		</div>
 
 		<?php

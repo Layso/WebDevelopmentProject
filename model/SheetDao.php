@@ -49,6 +49,24 @@ class SheetDao {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+
+   /**
+   * 
+   * @param type $trainee_id id of the trainee
+   * @param type $eval_id id of the evaluation
+   * @return array return an array of answers given for sheet
+   */
+  public static function getAnswers($trainee_id, $evaluation_id) {
+    $db = DB::getConnection();
+    $sql = "select * from sheet_answer where trainee_id=:trainee_id and evaluation_id=:evaluation_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":evaluation_id", $evaluation_id);
+    $stmt->bindValue(":trainee_id", $trainee_id);
+    $stmt->execute();
+    $db = null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   /**
    * 
    * @param int $trainee_id  id of the trainee
@@ -87,4 +105,38 @@ class SheetDao {
     return $ok;
   }
 
+
+  /**
+   * 
+   * @param int $evaluation_id id of evaluation to get sheets of
+   * @return array list of sheets corresponds to given evaluation
+   */
+  public static function getSheetsByEvaluation($evaluation_id) {
+    $db = DB::getConnection();
+    $sql = "select * from sheet where evaluation_id=:evaluation_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":evaluation_id", $evaluation_id);
+    $ok = $stmt->execute();
+    $db = null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+
+  /**
+   * 
+   * @param int $evaluation_id id of evaluation to get sheets of
+   * @return array list of sheets joined with name of the user for that sheet
+   */
+  public static function getAllSheetInfo($evaluation_id) {
+    $db = DB::getConnection();
+    $sql = "SELECT person.name, person.first_name, sheet.trainee_id, sheet.started_at, sheet.ended_at, sheet.corrected_at
+            FROM person
+            INNER JOIN sheet ON sheet.trainee_id = person.person_id
+            WHERE sheet.evaluation_id=:evaluation_id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(":evaluation_id", $evaluation_id);
+    $ok = $stmt->execute();
+    $db = null;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
