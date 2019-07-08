@@ -1,14 +1,4 @@
 <?php require_once("header.php"); 
-
-  $trainer_id = $_SESSION["user"]["person_id"];
-  $is_trainer = $_SESSION["user"]["is_trainer"];
-
-
- 
-    if ($_SESSION["user"]["is_trainer"] == 1) {
-        require_once("../view/TrainerHomeView.php");
-    
-  }
 ?>
 <div>
 
