@@ -1,0 +1,32 @@
+@startuml
+participant Browser
+participant View
+participant JS
+participant Controller
+participant DAO
+participant DBMS
+
+
+
+== Display Evaluation Info ==
+Browser -> Controller: GET /trainer-id_evaluation-id
+Controller -> Controller: check is logged \nand is trainer
+Controller -> DAO: get evaluation with $eval_id \nget sheets for evaluation
+DAO -> DBMS: select * from evaluation where eval_id=$eval_id\nselect * from sheets where evaluation_id=$eval_id \nselect * from sheet_answer join person on person.person_id=sheet_answer.trainee_id where trainee_id=$trainee_id
+DBMS -> DAO: Return list results of queries
+DAO -> Controller: return results
+Controller -> Controller: check the sheet.corrected_at to check if sheet is corrected \n$canBeCompleted = true if all sheets are corrected \n foreach sheet that is corrected, count sheet_answers where gives_correct_result is true
+Controller -> View: trainer_evaluation_info_controller.php
+View -> Browser: information about selected evaluation
+
+== Complete Evaluation ==
+Browser -> JS : complete()\n check if number of sheets equals to completed number of sheets \nshow error with alert if no equal
+JS -> Controller : /POST form
+Controller -> DAO : update corrected_at
+DAO -> DBMS : update evaluation set corrected_at=now() where evaluation_id=$eval_id
+DBMS -> DAO : $ok
+DAO -> Controller : result
+Controller -> Controller : set complete button hidden
+Controller -> View : trainer_evaluation_info_view.php
+View -> Browser: information about selected evaluation
+@enduml

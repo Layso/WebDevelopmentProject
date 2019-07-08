@@ -1,0 +1,32 @@
+@startuml
+participant Browser
+participant View
+participant JS
+participant Controller
+participant DAO
+participant DBMS
+
+
+
+== Display Sheet Answer ==
+Browser -> Controller: GET /trainer-id_evaluation-id_trainee-id
+Controller -> Controller: check is logged \nand is trainer
+Controller -> DAO: get all sheet_answer for given sheet
+DAO -> DBMS: select * from sheet_answer join person on person.person_id=sheet_answer.trainee_id where trainee_id=$trainee_id
+DBMS -> DAO: result of query
+DAO -> Controller: result of query
+Controller -> Controller: foreach sheet_answer if gives_correct_result == null \nset as $displayed_answer \nif $displayed_answer == null redirect to /trainer-id_evaluation-id
+Controller -> View: trainer_sheet_view.php
+View -> Browser: the question, answer given by trainee \nand result of query execution
+
+== Correct Sheet Answer ==
+Browser -> Controller: POST /trainer-id_evaluation-id_trainee-id
+Controller -> Controller: $result = POST["result"]
+Controller -> DAO: update sheet_answer result
+DAO -> DBMS : update sheet_answer set gives_correct_answer=$result
+DBMS -> DAO : $ok
+DAO -> Controller : result
+Controller -> Controller : foreach sheet_answer if gives_correct_result == null \nset as $displayed_answer \nif $displayed_answer == null redirect to /trainer-id_evaluation-id
+Controller -> View : trainer_sheet_view.php
+View -> Browser: next question or evaluation info page
+@enduml

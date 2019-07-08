@@ -1,0 +1,24 @@
+@startuml
+participant Browser
+participant View
+participant JS
+participant Controller
+participant DAO
+participant DBMS
+
+
+
+== Create Evaluation ==
+Browser -> Controller: GET /evaluation-create-form
+Controller -> Controller: check is logged \nand is trainer
+Controller -> View: evaluation_create_view.php
+View -> Browser: empty form to be filled
+Browser -> JS: Check if form fields are valid
+JS-> Controller: POST /evaluation-create
+Controller -> DAO: EvalDao.createEval(evaluation)
+DAO -> DBMS: INSERT INTO evaluation ...
+DBMS -> DAO: insert result
+DAO -> Controller: insert result
+Controller -> View: trainer-evaluation-view.php
+View -> Browser: evaluation homepage for user
+@enduml
