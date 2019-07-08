@@ -6,7 +6,7 @@
 
  
     if ($_SESSION["user"]["is_trainer"] == 1) {
-        require_once("../model/TrainerHomeDao.php");
+        require_once("../view/TrainerHomeView.php");
     
   }
 ?>

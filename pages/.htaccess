@@ -36,3 +36,7 @@ RewriteRule ^trainer-(\d+)+_group-(\d+)+_remove$ trainer_group_controller.php?tr
 RewriteRule ^trainer-(\d+)+_evaluation$ evaluation_home_controller.php?trainer_id=$1
 RewriteRule ^trainer-(\d+)+_evaluation-(\d+)$ trainer_evaluation_info_controller.php?trainer_id=$1&evaluation_id=$2
 RewriteRule ^trainer-(\d+)+_evaluation-(\d+)_trainee-(\d+)$ trainer_sheet_controller.php?trainer_id=$1&evaluation_id=$2&trainee_id=$3
+
+
+RewriteRule ^trainer-(\d+)+_addq$ TrainerHomeController.php?trainer_id=$1&action=addq
+
